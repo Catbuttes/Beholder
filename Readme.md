@@ -1,4 +1,5 @@
 # Beholder monitoring server
+
 This repo contains the ansible playbooks to spin up the beholder monitoring server. Created to monitor the availability of Essex University sites during the 2020 Hot Clearing period. It contains:
 
 - [Docker](https://www.docker.com/) 
@@ -10,6 +11,7 @@ This repo contains the ansible playbooks to spin up the beholder monitoring serv
 ---
 
 ## Making it work
+
 Before you begin, you will need the following:
 - A remote server running Debian buster somewhere in the cloud
 - Cloudflare DNS and API tokens generated (used for LE cert generation)
@@ -30,7 +32,8 @@ grafana_smtp_username: {{THE SMTP USERNAME HERE}}
 grafana_smtp_password: {{THE SMTP USER PASSWORD HERE}}
 
 ```
-2. Enter values into `vars/values.yml`
-4. Run `ansible-playbook deploy-stack.yml` to deploy the listed stack to the newly provisioned droplet
+2. Put your hosts into `hosts/hosts.yml`
+3. Enter values into `vars/values.yml`
+4. Run `ansible-playbook main.yml -i hosts/hosts.yml --become` to deploy the listed stack to the newly provisioned server
 
 Enjoy your newly provisioned monitoring stack.

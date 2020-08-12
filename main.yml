@@ -10,14 +10,12 @@
    - "vars/secrets.yml"
 
   roles:
-    #- docker
-    #- traefik
+    - docker
+    - traefik
     - grafana
-    #- influxdb
+    - influxdb
     - telegraf
   
-  # environment:
-  #   - SCW_API_KEY: "{{SCW_API_KEY}}"
 
   
 
