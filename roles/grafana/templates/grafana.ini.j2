@@ -1,0 +1,29 @@
+[server]
+root_url = {{ url_base_path }}/grafana
+serve_from_sub_path = true
+
+[smtp]
+enabled = true
+host = {{ grafana_smtp_host }}
+user = {{ grafana_smtp_username }}
+password = {{ grafana_smtp_password }}
+from_address = {{ grafana_smtp_from_email }}
+from_name = {{ grafana_smtp_from_name }}
+
+[rendering]
+server_url = http://grafana-renderer:8081/render
+callback_url = http://grafana:3000/grafana
+
+[auth]
+disable_login_form = false
+
+[auth.github]
+enabled = true
+allow_sign_up = true
+scopes = user:email,read:org
+auth_url = https://github.com/login/oauth/authorize
+token_url = https://github.com/login/oauth/access_token
+api_url = https://api.github.com/user
+allowed_organizations = RE-Discord-Development CatButtes-Hosting
+client_id = c3eeb51e94297fbaac7c
+client_secret = 11422e502f8bdaef8e6781ac34c5bbacc6022a5c

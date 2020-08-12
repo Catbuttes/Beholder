@@ -1,0 +1,16 @@
+data_persistance_location: "/etc/docker/containers/data"
+url_base_path: "https://beholder.buttes.xyz"
+host_base_path: "beholder.buttes.xyz"
+force_container_recreate: no
+
+grafana_version: "7.1.2"
+grafana_renderer_version: "2.0.0"
+prometheus_version: "v2.19.3"
+cadvisor_version: "v0.36.0"
+prometheus_blackbox_version: "v0.17.0"
+traefik_version: "v2.3"
+influxdb_version: "1.8.1"
+telegraf_version: "1.15.2"
+communitybot_version: "latest"
+
+# acme_ca_server: "https://acme-v02.api.letsencrypt.org/directory"

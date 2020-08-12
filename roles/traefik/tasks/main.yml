@@ -1,0 +1,50 @@
+---
+- name: Ensure web public network exists
+  docker_network:
+    name: web-public # required. Name of the network to operate on.
+    state: present
+
+- name: Ensure the monitoring network exists
+  docker_network:
+    name: monitoring
+    state: present
+
+- name: Ensure config persistance location
+  file:
+    name: "{{ data_persistance_location }}/traefik"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Ensure certificate persistance location
+  file:
+    name: "{{ data_persistance_location }}/traefik/certs"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Deploy traefik.yml
+  template:
+      dest: "{{ data_persistance_location }}/traefik/traefik.yml" # required. Location to render the template to on the remote machine.
+      src: traefik.yml.j2 # required. Path of a Jinja2 formatted template on the Ansible controller. This can be a relative or absolute path.
+
+- name: Start a Traefik container
+  docker_container:
+    name: traefik
+    image: "traefik:{{traefik_version}}"
+    restart_policy: always
+    env:
+      CF_API_EMAIL: "{{ CF_API_EMAIL }}"
+      CF_DNS_API_TOKEN: "{{ CF_DNS_API_TOKEN }}"
+      CF_ZONE_API_TOKEN: "{{ CF_ZONE_API_TOKEN }}"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "{{ data_persistance_location }}/traefik:/etc/traefik"
+    published_ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - name: web-public
+      - name: monitoring
+    purge_networks: yes
+    recreate: yes
+    state: started
+        

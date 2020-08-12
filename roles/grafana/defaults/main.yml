@@ -1,0 +1,8 @@
+grafana_smtp_host: ""
+grafana_smtp_from_email: ""
+grafana_smtp_username: ""
+grafana_smtp_password: ""
+grafana_smtp_from_name: Grafana
+
+grafana_version: latest
+grafana_renderer_version: latest

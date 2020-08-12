@@ -1,0 +1,23 @@
+- name: Deploy the application stack to a server
+  hosts: all
+
+  vars:
+    - ansible_user: catbuttes
+    - ansible_python_interpreter: "/usr/bin/python3"
+
+  vars_files:
+   - "vars/values.yml"
+   - "vars/secrets.yml"
+
+  roles:
+    #- docker
+    #- traefik
+    - grafana
+    #- influxdb
+    - telegraf
+  
+  # environment:
+  #   - SCW_API_KEY: "{{SCW_API_KEY}}"
+
+  
+

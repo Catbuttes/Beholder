@@ -1,0 +1,30 @@
+---
+- name: Ensure the monitoring network exists
+  docker_network:
+    name: monitoring
+    state: present
+
+- name: Ensure config persistance location
+  file:
+    name: "{{ data_persistance_location }}/influxdb/config"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Ensure data persistance location
+  file:
+    name: "{{ data_persistance_location }}/influxdb/data"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Start an influxdb container
+  docker_container:
+    name: influxdb
+    image: "influxdb:{{influxdb_version}}"
+    restart_policy: always
+    volumes:
+      - "{{ data_persistance_location }}/influxdb/data:/var/lib/influxdb"
+    networks:
+      - name: monitoring
+    purge_networks: yes
+    recreate: yes
+    state: started

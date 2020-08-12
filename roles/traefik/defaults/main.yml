@@ -1,0 +1,7 @@
+acme_dns_provider: cloudflare
+acme_dns_email: catbuttes@outlook.com
+acme_cert_store: "/etc/traefik/certs/acme.json"
+acme_staging_cert_store: "/etc/traefik/certs/test.json"
+acme_ca_server: "https://acme-v02.api.letsencrypt.org/directory"
+data_persistance_location: ""
+traefik_version: "latest"

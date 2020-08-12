@@ -1,0 +1,67 @@
+---
+- name: Ensure web public network exists
+  docker_network:
+    name: web-public # required. Name of the network to operate on.
+    state: present
+
+- name: Ensure the monitoring network exists
+  docker_network:
+    name: monitoring
+    state: present
+
+- name: Create the grafana network
+  docker_network:
+    name: grafana
+    state: present
+
+- name: Ensure config persistance location
+  file:
+    name: "{{ data_persistance_location }}/grafana/config"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Ensure data persistance location
+  file:
+    name: "{{ data_persistance_location }}/grafana/data"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Deploy grafana.ini
+  template:
+      dest: "{{ data_persistance_location }}/grafana/config/grafana.ini" # required. Location to render the template to on the remote machine.
+      src: grafana.ini.j2 # required. Path of a Jinja2 formatted template on the Ansible controller. This can be a relative or absolute path.
+
+- name: Start a Grafana Render Engine
+  docker_container:
+    name: grafana-renderer
+    image: "grafana/grafana-image-renderer:{{grafana_renderer_version}}"
+    restart_policy: always
+    env:
+      ENABLE_METRICS: "true"
+    networks:
+      - name: grafana
+      - name: monitoring
+
+- name: Start a Grafana container
+  docker_container:
+    name: grafana
+    image: "grafana/grafana:{{grafana_version}}"
+    restart_policy: always
+    command: "--config=/custom/grafana.ini"
+    volumes:
+      - "{{ data_persistance_location }}/grafana/config:/custom"
+      - "{{ data_persistance_location }}/grafana/data:/var/lib/grafana:Z"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.grafana.rule: "Host(`{{ host_base_path }}`)&&PathPrefix(`/grafana`)"
+      traefik.http.routers.grafana.entrypoints: "websecure"
+      traefik.port: "3000"
+      traefik.docker.network: "web-public"
+    networks:
+      - name: web-public
+      - name: monitoring
+      - name: grafana
+    purge_networks: yes
+    recreate: yes
+    state: started
+        
