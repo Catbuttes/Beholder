@@ -1,11 +1,11 @@
-# Real Engineering Discord Projects Infrastructure
-This repo contains the ansible playbooks to spin up the infrastructure hosting the Real Engineering Discord server community projects. At present this means it will do the following:
+# Beholder monitoring server
+This repo contains the ansible playbooks to spin up the beholder monitoring server. Created to monitor the availability of Essex University sites during the 2020 Hot Clearing period. It contains:
 
-- Install [docker](https://www.docker.com/) ✅
-- Install [prometheus](https://www.prometheus.io/) ✅
-- Install [grafana](https://grafana.com/) ✅
-- Install [Traefik](https://containo.us/traefik/) ✅
-- Spin up an instance of the [RE Community Bot](https://github.com/RE-Discord-Development/CommunityBot) ✅
+- [Docker](https://www.docker.com/) 
+- [Traefik](https://containo.us/traefik/)
+- [InfluxDB](https://www.influxdata.com/)
+- [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/)
+- [Grafana](https://grafana.com)
 
 ---
 
@@ -29,11 +29,8 @@ grafana_smtp_from_name: {{NAME OF THE SMTP EMAILER HERE}}
 grafana_smtp_username: {{THE SMTP USERNAME HERE}}
 grafana_smtp_password: {{THE SMTP USER PASSWORD HERE}}
 
-COMMUNITYBOT_DISCORD_TOKEN: {{You bot discord token here}}
 ```
 2. Enter values into `vars/values.yml`
-3. Run `ansible-playbook provision-server.yml` to provision a Digital Ocean droplet with associated DNS records
 4. Run `ansible-playbook deploy-stack.yml` to deploy the listed stack to the newly provisioned droplet
 
-
-Enjoy your newly provisioned server, bot and monitoring stack.
+Enjoy your newly provisioned monitoring stack.
