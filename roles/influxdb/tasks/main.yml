@@ -25,6 +25,9 @@
       - "{{ data_persistance_location }}/influxdb/data:/var/lib/influxdb"
     networks:
       - name: monitoring
+    env:
+      INFLUXDB_DATA_COMPACT_THROUGHPUT: "1m"
+      INFLUXDB_DATA_COMPACT_THROUGHPUT_BURST: "10m"
     purge_networks: yes
     recreate: yes
     state: started
