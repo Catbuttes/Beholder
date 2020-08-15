@@ -7,17 +7,17 @@
 
 - name: Add contrib non-free repos
   apt_repository:
-    repo: deb http://deb.debian.org/debian buster main contrib non-free
+    repo: deb http://deb.debian.org/debian stretch main contrib non-free
     state: present
 
 - name: Add updates contrib non-free repos
   apt_repository:
-    repo: deb http://deb.debian.org/debian-security/ buster/updates main contrib non-free
+    repo: deb http://deb.debian.org/debian-security/ stretch/updates main contrib non-free
     state: present
 
-- name: Add buster-updates contrib non-free repos
+- name: Add stretch-updates contrib non-free repos
   apt_repository:
-    repo: deb http://deb.debian.org/debian buster-updates main contrib non-free
+    repo: deb http://deb.debian.org/debian stretch-updates main contrib non-free
     state: present
 
 - name: Do system update
@@ -41,7 +41,7 @@
 
 - name: Add Docker Repository
   apt_repository:
-    repo: deb https://download.docker.com/linux/debian buster stable
+    repo: deb https://download.docker.com/linux/debian stretch stable
     state: present
 
 - name: Update apt and install docker-ce
