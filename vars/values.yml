@@ -1,3 +1,5 @@
+swap_file: "/swap"
+swap_file_size: "4G"
 data_persistance_location: "/etc/docker/containers/data"
 url_base_path: "https://beholder.buttes.xyz"
 host_base_path: "beholder.buttes.xyz"

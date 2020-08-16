@@ -10,7 +10,7 @@
    - "vars/secrets.yml"
 
   roles:
-    - docker
+    - system
     - traefik
     - grafana
     - influxdb
