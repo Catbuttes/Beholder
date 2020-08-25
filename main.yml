@@ -15,6 +15,7 @@
     - grafana
     - influxdb
     - telegraf
+    - communitybot
   
 
   
