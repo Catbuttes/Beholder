@@ -422,7 +422,7 @@
 # # Read metrics from one or many prometheus clients
  [[inputs.prometheus]]
 #   ## An array of urls to scrape metrics from.
-  urls = ["http://grafana:3000/metrics", "http://traefik:8082/metrics", "http://grafana-renderer:8081"]
+  urls = ["http://grafana:3000/metrics", "http://traefik:8082/metrics", "http://grafana-renderer:8081", "http://communitybot:9000/metrics"]
 #
 #   ## Metric version controls the mapping from Prometheus metrics into
 #   ## Telegraf metrics.  When using the prometheus_client output, use the same
