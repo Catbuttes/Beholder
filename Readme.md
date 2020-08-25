@@ -1,12 +1,14 @@
-# Beholder monitoring server
+# Beholder Server
 
-This repo contains the ansible playbooks to spin up the beholder monitoring server. Created to monitor the availability of Essex University sites during the 2020 Hot Clearing period. It contains:
+This repo contains the ansible playbooks to spin up the beholder server. Created originally to monitor the availability of Essex University sites during the 2020 Hot Clearing period. It contains:
 
 - [Docker](https://www.docker.com/) 
 - [Traefik](https://containo.us/traefik/)
 - [InfluxDB](https://www.influxdata.com/)
 - [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/)
 - [Grafana](https://grafana.com)
+
+It also runs the Real Engineering Discord Community Bot
 
 ---
 
