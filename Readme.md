@@ -33,6 +33,8 @@ grafana_smtp_from_name: {{NAME OF THE SMTP EMAILER HERE}}
 grafana_smtp_username: {{THE SMTP USERNAME HERE}}
 grafana_smtp_password: {{THE SMTP USER PASSWORD HERE}}
 
+DISCORD_BOT_TOKEN: {{ DISCORD BOT TOKEN HERE }}
+
 ```
 2. Put your hosts into `hosts/hosts.yml`
 3. Enter values into `vars/values.yml`
