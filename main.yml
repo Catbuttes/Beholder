@@ -14,6 +14,7 @@
     - traefik
     - grafana
     - influxdb
+    - telegraf-docker
     - telegraf
     - communitybot
   

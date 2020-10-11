@@ -25,6 +25,9 @@
       - "{{ data_persistance_location }}/influxdb/data:/var/lib/influxdb"
     networks:
       - name: monitoring
+      - name: web-public
+    published_ports:
+      - "8086:8086"
     env:
       INFLUXDB_DATA_COMPACT_THROUGHPUT: "1m"
       INFLUXDB_DATA_COMPACT_THROUGHPUT_BURST: "10m"
