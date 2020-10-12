@@ -13,7 +13,7 @@
 - name: Start a communitybot container
   docker_container:
     name: communitybot
-    image: "catbuttes/communitybot:{{communitybot_version}}"
+    image: "docker.pkg.github.com/re-discord-development/communitybot/communitybot:{{communitybot_version}}"
     restart_policy: always
     volumes:
       - "{{ data_persistance_location }}/communitybot/data:/var/lib/communitybot"
