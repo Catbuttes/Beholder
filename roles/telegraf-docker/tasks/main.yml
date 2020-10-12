@@ -22,7 +22,6 @@
     image: "telegraf:{{telegraf_version}}"
     restart_policy: always
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "{{ data_persistance_location }}/telegraf/config:/etc/telegraf"
     networks:
       - name: monitoring
