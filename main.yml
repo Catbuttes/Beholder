@@ -11,11 +11,11 @@
 
   roles:
     - system
+    - telegraf
     - traefik
     - grafana
     - influxdb
     - telegraf-docker
-    - telegraf
     - communitybot
   
 
