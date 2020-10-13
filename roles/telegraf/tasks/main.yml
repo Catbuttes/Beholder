@@ -16,6 +16,12 @@
     state: latest
   loop: ['telegraf']
 
+- name: Deploy 50-telegraf.conf
+  template:
+      dest: "/etc/rsyslog.d/50-telegraf.conf" # required. Location to render the template to on the remote machine.
+      src: 50-telegraf.conf.j2 # required. Path of a Jinja2 formatted template on the Ansible controller. This can be a relative or absolute path.
+
+
 - name: Deploy telegraf.conf
   template:
       dest: "/etc/telegraf/telegraf.conf" # required. Location to render the template to on the remote machine.
@@ -24,4 +30,9 @@
 - name: Restart Telegraf to pick up the new config
   service:
     name: telegraf
+    state: restarted
+
+- name: Restart rsyslog to pick up the new config
+  service:
+    name: rsyslog
     state: restarted
