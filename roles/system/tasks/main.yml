@@ -20,10 +20,11 @@
     repo: deb http://deb.debian.org/debian stretch-updates main contrib non-free
     state: present
 
-- name: Deploy authorized_keys
-  template:
-      dest: "~/.ssh/authorized_keys" # required. Location to render the template to on the remote machine.
-      src: authorized_keys.j2 # required. Path of a Jinja2 formatted template on the Ansible controller. This can be a relative or absolute path.
+- name: Set authorized key took from file
+  authorized_key:
+    user: admin
+    state: present
+    key: "{{ lookup('file', 'ssh/ansible_key.pub') }}"
 
 - name: Check if swap file exists
   stat:
