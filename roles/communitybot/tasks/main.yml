@@ -10,6 +10,12 @@
     state: directory
     mode: "u=rwx,g=rwx,o=rwx"
 
+- name: Authenticate to the github package registry
+  community.general.docker_login:
+    registry_url: docker.pkg.github.com
+    username: "{{github_user}}"
+    password: "{{github_pat}}"
+
 - name: Start a communitybot container
   docker_container:
     name: communitybot
