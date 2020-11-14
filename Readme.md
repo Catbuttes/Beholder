@@ -34,6 +34,8 @@ grafana_smtp_username: {{THE SMTP USERNAME HERE}}
 grafana_smtp_password: {{THE SMTP USER PASSWORD HERE}}
 
 DISCORD_BOT_TOKEN: {{ DISCORD BOT TOKEN HERE }}
+github_pat: {{ Github Personal Access token here (for the package registry)}
+github_user: {{ Github username here}}
 
 ```
 2. Put your hosts into `hosts/hosts.yml`
