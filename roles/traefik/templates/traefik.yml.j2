@@ -1,11 +1,17 @@
 api:
   dashboard: false
+log:
+  level: WARN
+accessLog: {}
 
 metrics:
-  prometheus:
+  influxdb:
+    address: influxdb:8086
+    protocol: http
+    database: metrics
     addEntryPointsLabels: true
     addServicesLabels: true
-    entryPoint: metrics
+    pushInterval: 10s
 
 entryPoints:
   web:
