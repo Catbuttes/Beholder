@@ -102,7 +102,13 @@
 
 [[outputs.influxdb]]
   urls = ["http://influxdb:8086"]
-  database = "telegraf"
+  database = "metrics"
+  namedrop = ["logs_*"]
+
+[[outputs.influxdb]]
+  urls = ["http://influxdb:8086"]
+  database = "logs"
+  namepass = ["logs_*"]
 
 
 
@@ -145,6 +151,7 @@
 [[inputs.docker_log]]
  endpoint = "unix:///var/run/docker.sock"
  source_tag = true
+ name_prefix = "logs_
 
 # Read metrics about docker containers
 [[inputs.docker]]
