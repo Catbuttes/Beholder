@@ -34,19 +34,23 @@
     recreate: no
     state: started
 
+- name: Install influxdb Module for Python
+  pip:
+    name: influxdb
+
 - name: Create a metrics database
   community.general.influxdb_database:
-    hostname: "http://localhost:8086"
+    hostname: "localhost"
     database_name: "metrics"
 
 - name: Create a logs database
   community.general.influxdb_database:
-    hostname: "http://localhost:8086"
+    hostname: "localhost"
     database_name: "logs"
 
 - name: Create 3 day retention policy for logs
   community.general.influxdb_retention_policy:
-      hostname: "http://localhost:8086"
+      hostname: "localhost"
       database_name: "logs"
       policy_name: log_retention
       default: yes
@@ -55,7 +59,7 @@
 
 - name: Create 1 week retention policy for metrics
   community.general.influxdb_retention_policy:
-      hostname: "http://localhost:8086"
+      hostname: "localhost"
       database_name: "metrics"
       policy_name: metric_retention
       default: yes
