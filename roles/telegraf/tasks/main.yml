@@ -21,11 +21,15 @@
       dest: "/etc/rsyslog.d/50-telegraf.conf" # required. Location to render the template to on the remote machine.
       src: 50-telegraf.conf.j2 # required. Path of a Jinja2 formatted template on the Ansible controller. This can be a relative or absolute path.
 
-
 - name: Deploy telegraf.conf
   template:
       dest: "/etc/telegraf/telegraf.conf" # required. Location to render the template to on the remote machine.
       src: telegraf.conf.j2 # required. Path of a Jinja2 formatted template on the Ansible controller. This can be a relative or absolute path.
+
+- name: Add telegraf to the docker group
+  user:
+    name: telegraf
+    groups: ["docker"]
 
 - name: Restart Telegraf to pick up the new config
   service:

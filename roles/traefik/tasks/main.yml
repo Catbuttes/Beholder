@@ -4,9 +4,9 @@
     name: web-public # required. Name of the network to operate on.
     state: present
 
-- name: Ensure the monitoring network exists
+- name: Ensure the influxdb network exists
   docker_network:
-    name: monitoring
+    name: influxdb
     state: present
 
 - name: Ensure config persistance location
@@ -43,7 +43,7 @@
       - "443:443"
     networks:
       - name: web-public
-      - name: monitoring
+      - name: influxdb
     purge_networks: yes
     recreate: yes
     state: started

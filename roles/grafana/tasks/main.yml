@@ -4,11 +4,6 @@
     name: web-public # required. Name of the network to operate on.
     state: present
 
-- name: Ensure the monitoring network exists
-  docker_network:
-    name: monitoring
-    state: present
-
 - name: Create the grafana network
   docker_network:
     name: grafana
@@ -38,9 +33,10 @@
     restart_policy: always
     env:
       ENABLE_METRICS: "true"
+    published_ports:
+      - 8081:8081
     networks:
       - name: grafana
-      - name: monitoring
 
 - name: Start a Grafana container
   docker_container:
@@ -59,7 +55,6 @@
       traefik.docker.network: "web-public"
     networks:
       - name: web-public
-      - name: monitoring
       - name: grafana
     purge_networks: yes
     recreate: yes

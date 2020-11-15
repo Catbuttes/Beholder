@@ -12,7 +12,6 @@
   roles:
     - system
     - influxdb
-    - telegraf-docker
     - telegraf
     - traefik
     - grafana

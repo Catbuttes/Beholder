@@ -80,4 +80,49 @@
   server = "udp://:6514"
   name_prefix = "logs_"
 
+[[inputs.influxdb]]
+  urls = [
+    "http://localhost:8086/debug/vars"
+  ]
+
+[[inputs.dns_query]]
+  servers = ["dns0.essex.ac.uk", "dns1.essex.ac.uk", "dns2.essex.ac.uk"]
+  domains = ["www.essex.ac.uk", "edrm.essex.ac.uk", "feds.essex.ac.uk"]
+  record_type = "A"
+
+[[inputs.http_response]]
+  urls = [
+    "https://edrm.essex.ac.uk/esf"
+    , "https://edrm.essex.ac.uk/updown/updown.html"
+    , "https://forms.essex.ac.uk"
+    , "https://www.essex.ac.uk"
+    , "https://www.essex.ac.uk/clearing"
+    ]
+
+ [[inputs.ping]]
+   urls = ["www.essex.ac.uk", "edrm.essex.ac.uk", "sp.essex.ac.uk", "forms.essex.ac.uk"]
+   method = "native"
+ 
+ [[inputs.x509_cert]]
+   sources = ["https://forms.essex.ac.uk:443", "https://edrm.essex.ac.uk:443", "https://www.essex.ac.uk:443"]
+
+# # Read logging output from the Docker engine
+[[inputs.docker_log]]
+ endpoint = "unix:///var/run/docker.sock"
+ source_tag = true
+ name_prefix = "logs_"
+
+# Read metrics about docker containers
+[[inputs.docker]]
+   endpoint = "unix:///var/run/docker.sock"
+   source_tag = true
+
+# # Read metrics from one or many prometheus clients
+[[inputs.prometheus]]
+  urls = [
+    "https://beholder.buttes.xyz/grafana/metrics"
+    ,"http://localhost:8081"
+    ,"http://localhost:9000/metrics"
+  ]
+
   
