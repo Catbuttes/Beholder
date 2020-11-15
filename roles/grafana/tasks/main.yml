@@ -4,6 +4,11 @@
     name: web-public # required. Name of the network to operate on.
     state: present
 
+- name: Ensure influxdb network exists
+  docker_network:
+    name: influxdb # required. Name of the network to operate on.
+    state: present
+
 - name: Create the grafana network
   docker_network:
     name: grafana
@@ -56,6 +61,7 @@
     networks:
       - name: web-public
       - name: grafana
+      - name: influxdb
     purge_networks: yes
     recreate: yes
     state: started
