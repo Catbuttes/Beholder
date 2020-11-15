@@ -22,7 +22,7 @@
       BOT_TOKEN: "{{ DISCORD_BOT_TOKEN }}"
       BOT_STORAGE: "/var/lib/communitybot"
     published_ports:
-      - 9000:9000
+      - "9000:9000"
     purge_networks: yes
     recreate: yes
     state: started
