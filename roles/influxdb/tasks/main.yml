@@ -1,7 +1,7 @@
 ---
-- name: Ensure the monitoring network exists
+- name: Ensure the influxdb network exists
   docker_network:
-    name: monitoring
+    name: influxdb
     state: present
 
 - name: Ensure config persistance location
@@ -24,7 +24,7 @@
     volumes:
       - "{{ data_persistance_location }}/influxdb/data:/var/lib/influxdb"
     networks:
-      - name: monitoring
+      - name: influxdb
     published_ports:
       - "8086:8086"
     env:
