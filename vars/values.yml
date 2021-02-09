@@ -5,7 +5,7 @@ url_base_path: "https://beholder.buttes.xyz"
 host_base_path: "beholder.buttes.xyz"
 force_container_recreate: no
 
-grafana_version: "7.3.2"
+grafana_version: "7.4.0"
 grafana_renderer_version: "2.0.0"
 traefik_version: "v2.3"
 influxdb_version: "1.8.1"
